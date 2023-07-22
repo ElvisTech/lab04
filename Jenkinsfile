@@ -8,6 +8,11 @@ pipeline {
                 echo 'Hola Mundo'
             }
         }
+        stage('Build') {
+            steps {
+                sh 'docker build -t elvistech/mysrv:latest .'
+            }
+        }
         stage('SonarQube Analysis') {
             environment {
                 // Define the SonarQube server URL and credentials
