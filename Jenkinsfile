@@ -3,17 +3,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            steps {
-                bat 'docker build -t elvistech/mysrv:latest .'
-            }
-        }
-        stage('Push') {
-            steps {
-                bat 'docker push elvistech/mysrv:latest'
-            }
-        }
-        stage('SonarQube Analysis') {
+        stage('Testing') {
             environment {
                 // Define the SonarQube server URL and credentials
                 SONARQUBE_URL = 'http://lab02-sonarqube-1:9000'
@@ -27,6 +17,16 @@ pipeline {
                        bat "${scannerHome}/bin/sonar-scanner -Dsonar.token=${SONARQUBE_TOKEN} -Dsonar.host.url=${SONARQUBE_URL}"
                     }
                 }
+            }
+        }
+        stage('Build') {
+            steps {
+                bat 'docker build -t elvistech/mysrv:latest .'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                bat 'docker push elvistech/mysrv:latest'
             }
         }
     }
