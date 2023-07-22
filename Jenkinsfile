@@ -13,6 +13,11 @@ pipeline {
                 sh 'docker build -t elvistech/mysrv:latest .'
             }
         }
+        stage('Push') {
+            steps {
+                sh 'docker push elvistech/mysrv:latest'
+            }
+        }
         stage('SonarQube Analysis') {
             environment {
                 // Define the SonarQube server URL and credentials
