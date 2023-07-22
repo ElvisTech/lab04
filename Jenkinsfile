@@ -3,11 +3,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
-            steps {
-                echo 'Hola Mundo'
-            }
-        }
         stage('Build') {
             steps {
                 sh 'docker build -t elvistech/mysrv:latest .'
