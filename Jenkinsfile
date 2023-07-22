@@ -3,14 +3,14 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
-            steps {
-                echo 'Hola Mundo'
-            }
-        }
         stage('Build') {
             steps {
                 sh 'docker build -t elvistech/mysrv:latest .'
+            }
+        }
+        stage('Push') {
+            steps {
+                sh 'docker push elvistech/mysrv:latest'
             }
         }
         stage('SonarQube Analysis') {
