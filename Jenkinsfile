@@ -5,12 +5,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t elvistech/mysrv:latest .'
+                bat 'docker build -t elvistech/mysrv:latest .'
             }
         }
         stage('Push') {
             steps {
-                sh 'docker push elvistech/mysrv:latest'
+                bat 'docker push elvistech/mysrv:latest'
             }
         }
         stage('SonarQube Analysis') {
@@ -24,7 +24,7 @@ pipeline {
                     def scannerHome = tool 'SonarScanner';
                     withSonarQubeEnv('SonarServer') {
                        //sh "${scannerHome}/bin/sonar-scanner"
-                       sh "${scannerHome}/bin/sonar-scanner -Dsonar.token=${SONARQUBE_TOKEN} -Dsonar.host.url=${SONARQUBE_URL}"
+                       bat "${scannerHome}/bin/sonar-scanner -Dsonar.token=${SONARQUBE_TOKEN} -Dsonar.host.url=${SONARQUBE_URL}"
                     }
                 }
             }
