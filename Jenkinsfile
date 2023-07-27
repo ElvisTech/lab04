@@ -21,12 +21,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat 'docker build -t elvistech/mysrv:latest .'
+                bat 'docker build -t elvistech/acceso:latest .'
             }
         }
         stage('Deploy') {
             steps {
-                bat 'docker push elvistech/mysrv:latest'
+                bat 'docker push elvistech/acceso:latest'
             }
         }
     }
