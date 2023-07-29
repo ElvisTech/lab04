@@ -31,6 +31,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                bat 'docker stop myweb'
+                bat 'docker rm myweb'
                 bat 'docker run -d --name myweb -p 80:8000 elvistech/acceso:latest'
             }
         }
