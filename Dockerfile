@@ -12,4 +12,5 @@ RUN chmod +x wait
 RUN chmod +x start.sh
 EXPOSE 8000
  
-CMD ./start.sh
+#CMD ./start.sh
+CMD ["python3","manage.py","runserver","0.0.0.0:8000"]
