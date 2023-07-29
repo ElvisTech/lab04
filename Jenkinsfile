@@ -24,9 +24,14 @@ pipeline {
                 bat 'docker build -t elvistech/acceso:latest .'
             }
         }
-        stage('Deploy') {
+        stage('Delivery') {
             steps {
                 bat 'docker push elvistech/acceso:latest'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                bat 'docker run -d --name myweb -p 80:8000 elvistech/acceso:latest'
             }
         }
     }
